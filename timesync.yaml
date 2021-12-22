@@ -1,7 +1,18 @@
+
 - hosts: localhost
+  tasks:
+    - yum:
+        name: rhel-system-roles
+	state: present      
+
+- hosts: all
   vars:
     timesync_ntp_servers:
-    - hostname:  192.168.122.24
+    - hostname: 0.rhel.pool.ntp.org  
       iburst: true
   roles:
-    - /usr/share/ansible/roles/rhel-system-roles.timesync
+  - /usr/share/ansible/roles/rhel-system-roles.timesync
+
+
+
+# Check rhel-system-roles is installed on control node
